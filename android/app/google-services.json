@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "749903197558",
+    "firebase_url": "https://shop-application-flutter.firebaseio.com",
+    "project_id": "shop-application-flutter",
+    "storage_bucket": "shop-application-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749903197558:android:44da2426853de0ad307657",
+        "android_client_info": {
+          "package_name": "akhattab595.shopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749903197558-c5cuiko57vl5u2o7acqpofmbe9lsrpdv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "akhattab595.shopapp",
+            "certificate_hash": "eaba82bb079585de1da9ea847b6a3844db853314"
+          }
+        },
+        {
+          "client_id": "749903197558-15mak0afjndln6kn2p154nonedvjlos3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKiGBKQFEpFmOgcvwUKVtl-jF_cNCkgiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749903197558-15mak0afjndln6kn2p154nonedvjlos3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
