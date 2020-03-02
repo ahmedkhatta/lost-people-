@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopapp/providers/products.dart';
+import '../providers/products.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -13,32 +13,39 @@ class ProductDetailsScreen extends StatelessWidget {
     final loadedProduct = Provider.of<Products>(
       context,
       listen: false,
-    ).findBtId(productId);
+    ).findById(productId);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(loadedProduct.title),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 300.0,
-              width: double.infinity,
+//      appBar: AppBar(
+//        title: Text(loadedProduct.title),
+//      ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title:Text(loadedProduct.name, textAlign: TextAlign.center,),
+
+            background:Hero(
+              tag: loadedProduct.id,
               child: Image.network(
                 loadedProduct.imageUrl,
                 fit: BoxFit.cover,
               ),
-            ),
+            ) ,),
+          ),
+          SliverList(delegate: SliverChildListDelegate
+            ([
             SizedBox(
               height: 10.0,
             ),
-            Text(
-              "\$${loadedProduct.price}",
+            Text( loadedProduct.dayLost,
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 20.0,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 10.0,
@@ -48,13 +55,15 @@ class ProductDetailsScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
                 loadedProduct.description,
-               textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
                 softWrap: true,
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+            SizedBox(height: 800.0,)
+          ])
+          ),
+        ],
+       ),
     );
   }
 }

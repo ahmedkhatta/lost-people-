@@ -3,8 +3,7 @@ import 'package:shopapp/widgets/product_item.dart';
 
 import 'package:provider/provider.dart';
 import '../providers/products.dart';
-import '../providers/product.dart';
-import 'package:flutter/foundation.dart';
+
 
 class ProductsGrid extends StatelessWidget {
  final bool showFavs;
@@ -13,7 +12,7 @@ class ProductsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productsData = Provider.of<Products>(context);
-    final products =showFavs?productsData.favariteItems :  productsData.items;
+    final products = showFavs?productsData.favoriteItems :  productsData.items;
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
 

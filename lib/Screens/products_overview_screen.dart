@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/Screens/cart_screen.dart';
-import 'package:shopapp/providers/cart.dart';
-import '../providers/product.dart';
+
 import '../providers/products.dart';
+import '../widgets/app_drawer.dart';
+
 import '../widgets/products_grid.dart';
-import '../widgets/badge.dart';
+
 
 enum FilterOptions {
   Favorites,
@@ -19,10 +19,34 @@ class ProdactsOverViewScreen extends StatefulWidget {
 
 class _ProdactsOverViewScreenState extends State<ProdactsOverViewScreen> {
   var _showOnlyFavorites = false;
+  var _isInit = true;
+  var _isLoding=  false;
+  @override
+  void initState() {
+
+// Future.delayed(Duration.zero).then( (_){
+//   Provider.of<Products>(context).fetchAndSetProducts();
+// });
+    super.initState();
+  }
+  @override
+  void didChangeDependencies() {
+     if(_isInit){
+       setState(() {
+         _isLoding= true;
+       });
+
+       Provider.of<Products>(context).fetchAndSetProducts().then((_){
+         _isLoding=false;
+       });
+     }
+     _isInit= false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("MyShop"), actions: <Widget>[
+      appBar: AppBar(title: Text("Lost Of People"), actions: <Widget>[
         PopupMenuButton(
           onSelected: (FilterOptions selectValue) {
             setState(() {
@@ -45,20 +69,22 @@ class _ProdactsOverViewScreenState extends State<ProdactsOverViewScreen> {
             )
           ],
         ),
-        Consumer<Cart>(
-          builder: (_, cart, ch ) => Badge(
-            child: ch,
-            value: cart.itemCount.toString(),
-          ),
-          child: IconButton(
-              icon: Icon(Icons.shopping_cart,color: Colors.white,),
-              onPressed: (){
-            Navigator.of(context).pushNamed(CartScreen.routeName);
-
-              }),
-        ),
-      ]),
-      body: ProductsGrid(_showOnlyFavorites),
+//        Consumer<Cart>(
+//          builder: (_, cart, ch ) => Badge(
+//            child: ch,
+//            value: cart.itemCount.toString(),
+//          ),
+//          child: IconButton(
+//              icon: Icon(Icons.shopping_cart,color: Colors.white,),
+//              onPressed: (){
+//            Navigator.of(context).pushNamed(CartScreen.routeName);
+//
+//              }),
+//        ),
+      ]
+      ),
+      drawer: AppDrawer(),
+      body:_isLoding?Center(child: CircularProgressIndicator(),) :ProductsGrid(_showOnlyFavorites),
     );
   }
 }

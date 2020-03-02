@@ -22,11 +22,17 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string> We need to take a picture !</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string> We need to take a picture !</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
+	    <key>NSLocationWhenInUseUsageDescription</key>
+        <string>Using location is required to add a person location.</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
